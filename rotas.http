@@ -1,0 +1,11 @@
+
+
+POST http://localhost:3000/add-movie
+Content-Type: application/json
+
+{
+    "name": "John Wick 4",
+    "genre": "action",
+    "duration": "2 horas",
+    "classification": "16 anos"
+}
