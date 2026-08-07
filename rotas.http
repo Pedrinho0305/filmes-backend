@@ -4,8 +4,22 @@ POST http://localhost:3000/add-movie
 Content-Type: application/json
 
 {
-    "name": "John Wick 4",
+    "name": "Homem Aranha",
     "genre": "action",
-    "duration": "2 horas",
-    "classification": "16 anos"
+    "duration": "2 horas e meia",
+    "classification": "14 anos"
+}
+###
+DELETE http://localhost:3000/delete-movie/5
+
+###
+
+PUT http://localhost:3000/update-movie
+Content-Type: application/json
+
+{
+    "name": "Homem Aranha 4 - Um Novo Dia",
+    "genre": "action",
+    "duration": "2 horas e meia",
+    "classification": "14 anos"
 }
