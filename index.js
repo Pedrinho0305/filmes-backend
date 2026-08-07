@@ -37,21 +37,27 @@ app.delete("/delete-movie/:id", (req, res)=>{
     
 })
 
-app.put("/update-movie", (req, res)=>{
-    const { name, genre, duration, classfication} = req.body
-    const {id} = req.params
+app.put("/update-movie/:id", (req, res) => {
+    
+    const { name, genre, duration, classfication } = req.body;
+    
+    const { id } = req.params;
 
-    const updateCommand = "UPDATE filmes_pedro3 SET name = Homem Aranha 4 WHERE id = ?"
+    const updateCommand = "UPDATE filmes_pedro3 SET name = ?, genre = ?, duration = ?, classification = ? WHERE id = ?";
 
-    sql.query(updateCommand, [id, name, genre, duration, classfication], (error)=>{
-        if(error){
-            console.log(error)
-            return
+    sql.query(updateCommand, [name, genre, duration, classfication, id], (error, results) => {
+        if (error) {
+            console.log(error);
+            return res.status(500).json({ message: "Erro ao atualizar o filme" });
         }
 
-        res.json({ message: "Filme atualizado com sucesso!" })
-    })
-})
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ message: "Filme não encontrado" });
+        }
+
+        res.json({ message: "Filme atualizado com sucesso!" });
+    });
+});
 
 
 const sql = mysql2.createPool({
