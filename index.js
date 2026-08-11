@@ -8,6 +8,19 @@ const PORT = 3000
 
 app.use(express.json())
 
+
+app.get("/movies", (req, res)=>{
+    const selectCommand = "SELECT * FROM filmes_pedro3"
+
+    sql.query(selectCommand, (error, results)=>{
+        if(error){
+            console.error(error)
+        }
+
+        res.json(results)
+    })
+})
+
 app.post("/add-movie", (req, res)=>{
     const {name, genre, duration, classification} = req.body
 

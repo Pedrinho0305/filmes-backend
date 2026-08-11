@@ -14,7 +14,7 @@ DELETE http://localhost:3000/delete-movie/17
 
 ###
 
-PUT http://localhost:3000/update-movie/16
+PUT http://localhost:3000/update-movie/18
 Content-Type: application/json
 
 {
@@ -23,3 +23,6 @@ Content-Type: application/json
   "duration": 95,
   "classification": "L"
 }
+###
+
+GET http://localhost:3000/movies
