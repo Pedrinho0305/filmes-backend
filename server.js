@@ -8,10 +8,12 @@ const PORT = 3000
 
 app.use(express.json())
 
+app.use(cors())
+
 app.post("/add-movie", (req, res)=>{
     const {name, genre, duration, classification} = req.body
 
-    const insertCommand = "INSERT INTO filmes_pedro(name, genre, duration, classification) VALUES (?,?,?,?)"
+    const insertCommand = "INSERT INTO filmes_pedro3(name, genre, duration, classification) VALUES (?,?,?,?)"
 
     sql.query(insertCommand, [name, genre, duration, classification], (error)=>{
         if(error){
@@ -25,7 +27,7 @@ app.post("/add-movie", (req, res)=>{
 app.delete("/delete-movie", (req, res)=>{
     const {id} = req.params
 
-    const deleteCommand = "DELETE FROM filmes_pedro WHERE id = ?"
+    const deleteCommand = "DELETE FROM filmes_pedro3 WHERE id = ?"
 
     sql.query(deleteCommand, [id], (error)=>{
         if(error){
@@ -40,7 +42,7 @@ app.delete("/delete-movie", (req, res)=>{
 app.put("/update-movie", (req, res)=>{
     const {id, name, genre, duration, classfication} = req.body
 
-    const updateCommand = "UPDATE name, genre, duration, classfifcation WHERE id  = ? FROM filmes_pedro"
+    const updateCommand = "UPDATE name, genre, duration, classfifcation WHERE id  = ? FROM filmes_pedro3"
 
     sql.query(updateCommand, [id], (error)=>{
         if(error){
@@ -52,10 +54,22 @@ app.put("/update-movie", (req, res)=>{
     })
 })
 
+app.get("/", (req, res)=>{
+    const selectCommand = "SELECT * FROM filmes_pedro3"
+
+    sql.query(selectCommand, (error, result)=>{
+        if(error){
+            console.error(error)
+        }
+
+        res.json(result)
+    })
+})
+
 
 const sql = mysql2.createPool({
     host: "benserverplex.ddns.net",
-    user: "aluno_projetos",
+    user: "alunos",
     password:"senhaAlunos",
     database: "alunos_filmes03MB"
 })
