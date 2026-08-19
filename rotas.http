@@ -4,8 +4,25 @@ POST http://localhost:3000/add-movie
 Content-Type: application/json
 
 {
-    "name": "John Wick 4",
-    "genre": "action",
-    "duration": "2 horas",
-    "classification": "16 anos"
+  "name": "Divertida Mente",
+  "genre": "Animação",
+  "duration": 95,
+  "classification": "L"
 }
+###
+DELETE http://localhost:3000/delete-movie/17
+
+###
+
+PUT http://localhost:3000/update-movie/18
+Content-Type: application/json
+
+{
+  "name": "Divertida Mente 2",
+  "genre": "Animação",
+  "duration": 95,
+  "classification": "L"
+}
+###
+
+GET http://localhost:3000/movies
