@@ -10,7 +10,7 @@ async function buscarFilmes() {
                     <div>
                         <h2>${filme.name}</h2>
                         <p><strong>Gênero:</strong> ${filme.genre}</p>
-                        <p><strong>Duração:</strong> ${filme.duration} minutos</p>
+                        <p><strong>Duração:</strong> ${filme.duration}</p>
                         <p><strong>Classificação indicativa:</strong> ${filme.classification > 0 ? filme.classification + ' anos' : 'Livre'}</p>
                     </div>
                 `
