@@ -4,7 +4,7 @@ import mysql2 from "mysql2"
 
 const app = express()
 
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 
@@ -54,13 +54,13 @@ app.delete("/delete-movie/:id", (req, res)=>{
 
 app.put("/update-movie/:id", (req, res) => {
     
-    const { name, genre, duration, classfication } = req.body;
+    const { name, genre, duration, classification } = req.body;
     
     const { id } = req.params;
 
     const updateCommand = "UPDATE filmes_pedro3 SET name = ?, genre = ?, duration = ?, classification = ? WHERE id = ?";
 
-    sql.query(updateCommand, [name, genre, duration, classfication, id], (error, results) => {
+    sql.query(updateCommand, [name, genre, duration, classification, id], (error, results) => {
         if (error) {
             console.log(error);
             return res.status(500).json({ message: "Erro ao atualizar o filme" });
@@ -76,12 +76,17 @@ app.put("/update-movie/:id", (req, res) => {
 
 
 const sql = mysql2.createPool({
-    host: "benserverplex.ddns.net",
-    user: "alunos",
-    password:"senhaAlunos",
-    database: "alunos_filmes03MB"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 })
-app.listen(PORT, ()=>{
-    console.log("Servidor Rodando")
-})
+
+if (!process.env.VERCEL) {
+    app.listen(PORT, ()=>{
+        console.log(`Servidor rodando na porta ${PORT}`)
+    })
+}
+
+export default app
 
