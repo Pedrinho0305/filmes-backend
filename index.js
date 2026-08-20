@@ -8,6 +8,8 @@ const PORT = 3000
 
 app.use(express.json())
 
+app.use(cors())
+
 
 app.get("/movies", (req, res)=>{
     const selectCommand = "SELECT * FROM filmes_pedro3"
