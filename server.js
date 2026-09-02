@@ -10,6 +10,19 @@ app.use(express.json())
 
 app.use(cors())
 
+
+app.get("/", (req, res)=>{
+    const selectCommand = "SELECT * FROM filmes_pedro3"
+
+    sql.query(selectCommand, (error, results)=>{
+        if(error){
+            console.error(error)
+        }
+
+        res.json(results)
+    })
+})
+
 app.post("/add-movie", (req, res)=>{
     const {name, genre, duration, classification} = req.body
 
