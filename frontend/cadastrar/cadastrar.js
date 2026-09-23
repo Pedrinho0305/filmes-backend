@@ -28,5 +28,5 @@ async function cadastrarFilme() {
 
     alert(mensagem.message)
 
-    window.location.href = "../frontend/index.html"
+    window.location.href = "../index.html"
 }
