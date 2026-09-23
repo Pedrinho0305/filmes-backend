@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000"
+const API_URL = "https://filmes-backend-theta.vercel.app"
 
 async function buscarFilmes() {
     const resposta = await fetch(`${API_URL}/`)
